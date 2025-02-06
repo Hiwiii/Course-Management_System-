@@ -1,0 +1,14 @@
+# Use the official Golang image
+FROM golang:latest
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy all Go files into the container
+COPY . .
+
+# Build only helloworld.go
+RUN go build -o myapp helloworld.go
+
+# Set the command to run the executable
+CMD ["./myapp"]

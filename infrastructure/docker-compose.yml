@@ -1,4 +1,17 @@
+version: "3.8"
 services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.multistage
+    volumes:
+      - .:/app # Mount the current directory into the container
+      - /app/tmp # Temporary files for Air
+    env_file:
+      - .env # Load environment variables from a file
+    ports:
+      - "8000:8000" # Map the application port
+    command: air
   postgres:
     image: postgres:15
     restart: always
